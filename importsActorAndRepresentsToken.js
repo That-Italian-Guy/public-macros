@@ -2,19 +2,19 @@
 
 // In Foundry, press F12 and go to console tab; 
 // Type game.packs.keys() to get a list of compendia. 
-//You are going to need your Actors compendium name and add replace "world.dod" on line 264
+// You are going to need your Actors compendium name and add replace "world.dod" on line 264
 
-// tokens that do not have an actor. Add Actors to the excludeTokens array to have them skipped by the process.
+// Tokens that do not have an actor. Add Actors to the excludeTokens array to have them skipped by the process.
 const excludeTokens = ["Prefab", "prefab", "cannon_effects", "Firepit", "Faction Tracker"];
 const broken = canvas.scene.tokens.filter(t => !t.actor && !excludeTokens.includes(t.name));
 
-// unique names of broken tokens.
+// Unique names of broken tokens.
 const names = new Set(broken.map(t => t.name));
 
-// broken tokens that do not have an actor in the sidebar.
+// Broken tokens that do not have an actor in the sidebar.
 const toImport = new Set();
 
-// update broken tokens whose actors exist in the sidebar.
+// Update broken tokens whose actors exist in the sidebar.
 const updates = broken.map(t => {
   const id = game.actors.getName(t.name)?.id;
   if(!id) { toImport.add(t.name); return {_id: t.id}; }
@@ -22,7 +22,7 @@ const updates = broken.map(t => {
 });
 await canvas.scene.updateEmbeddedDocuments("Token", updates);
 
-// import missing Actors from the Compendiumg pack in line 26
+// Import missing Actors from the Compendiumg pack in line 26
 const pack = game.packs.get("world.dod");
 for(const name of toImport){
   const actorId = pack.index.getName(name)?._id;
