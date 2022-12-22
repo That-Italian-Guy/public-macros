@@ -1,6 +1,8 @@
+// Thanks to Zhell and to the rest of #macro-polo for the assist!
+
 // In Foundry, press F12 and go to console tab; 
 // Type game.packs.keys() to get a list of compendia. 
-//You are going to need your Actors compendium name and add replace "world.dod" on line 24
+//You are going to need your Actors compendium name and add replace "world.dod" on line 264
 
 // tokens that do not have an actor. Add Actors to the excludeTokens array to have them skipped by the process.
 const excludeTokens = ["Prefab", "prefab", "cannon_effects", "Firepit", "Faction Tracker"];
@@ -20,7 +22,7 @@ const updates = broken.map(t => {
 });
 await canvas.scene.updateEmbeddedDocuments("Token", updates);
 
-// import missing Actors from the Compendiumg pack in line 24
+// import missing Actors from the Compendiumg pack in line 26
 const pack = game.packs.get("world.dod");
 for(const name of toImport){
   const actorId = pack.index.getName(name)?._id;
