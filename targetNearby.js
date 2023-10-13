@@ -21,8 +21,8 @@ let targets = canvas.tokens.placeables.filter(token => {
     if (!isHostile) return false;
     /// If the next three lines are not commented out, the macro will target ALLIES (IE: tokens with the same Disposition as the selected token; it will exclude Neutral disposition tokens).
     ///let disposition = myToken.document.disposition;
-    ///let isHostile = ((disposition !== token.document.disposition) && (token.document.disposition !== 0));
-    ///if (!isHostile) return false;
+    ///let isAllied = ((disposition !== token.document.disposition) && (token.document.disposition !== 0));
+    ///if (!isAllied) return false;
 
     /// Comment out the next three lines to disable name filtering. 
     ///let tokenName = token.document.name;
