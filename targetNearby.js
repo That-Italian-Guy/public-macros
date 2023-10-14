@@ -7,6 +7,11 @@ let targets = canvas.tokens.placeables.filter(token => {
     let uuid = token.actor.uuid;
     let isDead = game.dfreds.effectInterface.hasEffectApplied('Dead', uuid);
     if (isDead) return false;
+
+    /// Comment out the next three lines to allow targeting of self. NOTE: it also requires <<<let uuid = token.actor.uuid;>>> to be UNCOMMENTED.
+    let myUuid = myToken.actor.uuid;
+    let isMe = (myToken.actor.uuid === token.actor.uuid);
+    if (isMe) return false;
     
     /// Comment out the next three lines to disable specific name filtering. Replace the name with the desired one (must be the token's, not the actor's name!) OR replace <<<tokenName === "Demonic Hound">>> with <<<tokenName === myToken.document.name>>> to target tokens that share the selected token's name.
     ///let tokenName = token.document.name;
