@@ -1,8 +1,13 @@
-/// Automates targeting in an radius around the selected token for features that require specific criteria. In the default state, targets all ENEMIES in a 15ft. radius semisphere centered on the selected token. 
+/// Automates targeting in an radius around the selected token for features that require specific criteria. In the default state, targets all alive ENEMIES in a 15ft. radius semisphere centered on the selected token. 
 
 let myToken = canvas.tokens.controlled[0];
 let targets = canvas.tokens.placeables.filter(token => {
 
+    /// Comment out the next three lines to allow targeting of defeated/dead (0 HP) tokens.
+    let uuid = token.actor.uuid;
+    let isDead = game.dfreds.effectInterface.hasEffectApplied('Dead', uuid);
+    if (isDead) return false;
+    
     /// Comment out the next three lines to disable specific name filtering. Replace the name with the desired one (must be the token's, not the actor's name!) OR replace <<<tokenName === "Demonic Hound">>> with <<<tokenName === myToken.document.name>>> to target tokens that share the selected token's name.
     ///let tokenName = token.document.name;
     ///let isName = (tokenName === "Demonic Hound");
